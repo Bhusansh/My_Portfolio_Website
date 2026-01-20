@@ -1,5 +1,7 @@
 // app/page.tsx
+"use client";
 import Image from "next/image";
+import { useState } from "react";
 
 type Service = {
   title: string;
@@ -9,18 +11,18 @@ type Service = {
 
 const services: Service[] = [
   {
-    title: "UI / UX Creative Design",
-    description: "Human‑centered digital products with delightful micro‑interactions.",
+    title: "Web & App Development",
+    description: "Full-stack web applications and mobile-responsive sites using Next.js, React, TypeScript & Tailwind.",
     variant: "dark",
   },
   {
-    title: "Visual Graphic Design",
-    description: "Brand visuals, layouts, and marketing graphics for modern teams.",
+    title: "UI/UX Design",
+    description: "Modern, intuitive interfaces with focus on user experience and responsive design patterns.",
     variant: "light",
   },
   {
-    title: "Strategy & Digital Marketing",
-    description: "Product strategy, funnels, and campaigns that actually convert.",
+    title: "Backend Integration",
+    description: "Supabase authentication, database management, and API integrations for scalable applications.",
     variant: "light",
   },
 ];
@@ -34,56 +36,75 @@ type ExperienceItem = {
 
 const experience: ExperienceItem[] = [
   {
-    role: "Micro‑interactions Awards Team",
-    company: "Fleava Agency",
-    location: "Singapore / Remote",
-    duration: "2 Years",
+    role: "Software Engineering Intern",
+    company: "Kusum Electronics",
+    location: "Gangtok, Sikkim",
+    duration: "Jan 2025 (1 Month)",
   },
   {
-    role: "Senior UI Designer",
-    company: "Behance",
-    location: "Bengaluru",
-    duration: "1 Year",
+    role: "Founder & Full-Stack Developer",
+    company: "Esta Travels",
+    location: "Siliguri / Sikkim / Darjeeling",
+    duration: "2024 - Present",
   },
   {
-    role: "Product Designer",
-    company: "Startup Studio",
-    location: "India",
-    duration: "1.5 Years",
-  },
-  {
-    role: "Webflow Team Manager",
-    company: "Google Partner Studio",
+    role: "Freelance Web Developer",
+    company: "USA Clients",
     location: "Remote",
-    duration: "2 Years",
+    duration: "2024 - Present",
+  },
+  {
+    role: "BTech CSE Student (3rd Year)",
+    company: "Sikkim Manipal Institute of Technology",
+    location: "Sikkim, India",
+    duration: "2023 - Present",
   },
 ];
 
-type CaseStudy = {
+type Project = {
   tag: string;
   title: string;
   subtitle: string;
 };
 
-const caseStudies: CaseStudy[] = [
+const projects: Project[] = [
   {
-    tag: "Web Design",
-    title: "Innovative designer for digital age",
-    subtitle: "Web design for fintech payment solutions.",
+    tag: "Full-Stack",
+    title: "Esta Travels Website",
+    subtitle: "Complete web application for tours & travel agency operating in Sikkim, Darjeeling & Siliguri.",
   },
   {
-    tag: "Web Design",
-    title: "Minimal agency website",
-    subtitle: "Clean aesthetic for startup business.",
+    tag: "Portfolio",
+    title: "USA Client Websites",
+    subtitle: "Custom portfolio websites with modern UI/UX for international clients.",
   },
   {
-    tag: "Web Design",
-    title: "SaaS web and app design",
-    subtitle: "Product‑led growth landing pages.",
+    tag: "Government Project",
+    title: "Labour Management System",
+    subtitle: "Practical implementation of app & web development during internship at Kusum Electronics.",
   },
 ];
 
+type Skill = {
+  name: string;
+  description: string;
+  level: number; // 0-100 percentage
+};
+
+const skills: Skill[] = [
+  { name: "Next.js", description: "Full-stack React framework with server components", level: 85 },
+  { name: "React", description: "Modern UI library with hooks and components", level: 90 },
+  { name: "TypeScript", description: "Type-safe JavaScript for scalable applications", level: 80 },
+  { name: "Tailwind", description: "Utility-first CSS framework for rapid UI development", level: 88 },
+  { name: "Supabase", description: "Backend-as-a-service with PostgreSQL database", level: 82 },
+  { name: "DSA", description: "Data structures & algorithms for problem solving", level: 78 },
+  { name: "C++", description: "Systems programming and competitive programming", level: 75 },
+  { name: "DBMS", description: "Database management systems and SQL queries", level: 80 },
+];
+
 export default function HomePage() {
+  const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
+
   return (
     <main className="min-h-screen">
       {/* Top wrapper */}
@@ -94,7 +115,7 @@ export default function HomePage() {
           <header className="mb-10 flex items-center justify-between gap-6">
             <div className="flex items-center gap-2">
               <span className="rounded-full bg-black px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white">
-                it&apos;s me
+                it's me
               </span>
             </div>
             <nav className="hidden items-center gap-6 text-sm text-neutral-600 md:flex">
@@ -103,6 +124,12 @@ export default function HomePage() {
               </button>
               <button className="hover:text-black">About Me</button>
               <button className="hover:text-black">Contact</button>
+              <a
+                href="mailto:bhusan@example.com"
+                className="rounded-full bg-black px-6 py-3 text-sm font-medium text-white shadow-lg hover:bg-neutral-800"
+              >
+                Hire Me
+              </a>
             </nav>
           </header>
 
@@ -113,56 +140,76 @@ export default function HomePage() {
               <span>Hello!</span>
             </div>
             <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-              Hello! <span className="text-neutral-400">I&apos;m</span>{" "}
+              Hello!{" "}
               <span className="underline decoration-4 decoration-yellow-400">
-                Madhu
+                Bhusan
               </span>
             </h1>
             <p className="text-lg font-medium text-neutral-700">
-              Product Designer
+              Founder of Esta Travels | BTech CSE 3rd Year | Sikkim Manipal Institute of Technology
             </p>
             <p className="max-w-xl text-sm leading-relaxed text-neutral-600">
-              Madhu is a UX leader, design thinker, and product designer focused
-              on elegant problem‑solving, user testing, and authentic brand
-              experiences.
+              Passionate software engineer specializing in Next.js, React, TypeScript, Tailwind CSS & Supabase. 
+              Building scalable web apps and founder of Esta Travels serving Sikkim, Darjeeling & Siliguri regions.
             </p>
 
-            {/* Bullet list */}
+            {/* Skills & strengths with Esta Travels logo */}
             <ul className="mt-2 space-y-1 text-sm text-neutral-700">
-              <li>• Product must be authentic</li>
-              <li>• Solve pain points elegantly</li>
-              <li>• User testing, feedback, and validation</li>
+              <li>• Next.js 15, React, TypeScript, Tailwind CSS</li>
+              <li>• Supabase backend & authentication</li>
+              <li className="flex items-center gap-2">
+                <Image 
+                  src="/logo_bg.png" 
+                  alt="Esta Travels Logo" 
+                  width={16} 
+                  height={16}
+                  className="object-contain"
+                />
+                Founder of Esta Travels - Tours & Travel Agency
+              </li>
+              <li>• DSA | Problem Solving | Full-Stack Development</li>
+              <li>• Currently available for full-time / freelance work</li>
             </ul>
 
             {/* CTA buttons */}
             <div className="mt-6 flex flex-wrap items-center gap-4">
-              <button className="rounded-full bg-black px-7 py-3 text-sm font-medium text-white shadow-lg shadow-black/10">
-                Let&apos;s Talk
-              </button>
-              <button className="flex items-center gap-2 rounded-full border border-neutral-300 px-6 py-3 text-sm font-medium">
-                Download CV
-                <span className="text-xs text-neutral-400">▼</span>
+              <a
+                href="mailto:bhusan@example.com"
+                className="rounded-full bg-black px-7 py-3 text-sm font-medium text-white shadow-lg shadow-black/10 hover:bg-neutral-900"
+              >
+                Get In Touch
+              </a>
+              <button className="flex items-center gap-2 rounded-full border border-neutral-300 px-6 py-3 text-sm font-medium hover:bg-neutral-50">
+                View Projects
+                <span className="text-xs">▼</span>
               </button>
             </div>
           </div>
 
-          {/* Category tabs */}
+          {/* Tech stack tabs with dropdown */}
           <div className="mt-10 flex flex-wrap gap-3 border-y border-neutral-200 py-4 text-xs font-medium uppercase tracking-[0.18em] text-neutral-600">
-            <button className="rounded-full bg-black px-4 py-2 text-white">
-              Web Design
-            </button>
-            <button className="rounded-full border border-neutral-300 px-4 py-2">
-              App Design
-            </button>
-            <button className="rounded-full border border-neutral-300 px-4 py-2">
-              Development
-            </button>
-            <button className="rounded-full border border-neutral-300 px-4 py-2">
-              Webflow
-            </button>
-            <button className="rounded-full border border-neutral-300 px-4 py-2">
-              Branding
-            </button>
+            {skills.map((skill) => (
+              <div key={skill.name} className="relative inline-block">
+                <button
+                  onClick={() => setSelectedSkill(selectedSkill === skill.name ? null : skill.name)}
+                  className="rounded-full bg-black px-4 py-2 text-white hover:bg-neutral-800"
+                >
+                  {skill.name}
+                </button>
+                {selectedSkill === skill.name && (
+                  <div className="absolute bottom-full left-0 mb-2 w-48 rounded-xl bg-white p-3 shadow-lg border border-neutral-200">
+                    <p className="text-xs text-neutral-700 mb-2">{skill.description}</p>
+                    <div className="h-1.5 w-full rounded-full bg-neutral-200">
+                      <div
+                        className="h-1.5 rounded-full bg-black transition-all duration-700 ease-out"
+                        style={{ width: `${skill.level}%` }}
+                      />
+                    </div>
+                    <p className="mt-1 text-xs font-medium text-neutral-600">{skill.level}%</p>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -170,22 +217,21 @@ export default function HomePage() {
         <div className="flex-1 space-y-8">
           {/* Portrait card */}
           <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl shadow-black/10">
-            {/* Colorful fake gradient bar */}
             <div className="h-1 w-full bg-gradient-to-r from-pink-500 via-yellow-400 to-sky-400" />
             <div className="flex flex-col items-center gap-4 p-6 sm:flex-row sm:gap-8">
               <div className="relative h-60 w-60 flex-shrink-0 overflow-hidden rounded-3xl bg-neutral-200">
-                {/* Replace `/portrait.jpg` with your image in /public */}
                 <Image
-                  src="/portrait.jpeg"
-                  alt="Madhu portrait"
+                  src="/bhusan-portrait.jpg"
+                  alt="Bhusan - Software Engineer & Esta Travels Founder"
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="space-y-3 text-sm text-neutral-700">
                 <p>
-                  Designing intuitive products with personality, combining
-                  strong visual language with measurable business outcomes.
+                  Building modern web applications with clean code architecture. 
+                  <strong>Founder of Esta Travels</strong> and experienced in full-stack development 
+                  projects across India and USA.
                 </p>
                 <p className="text-xs uppercase tracking-[0.18em] text-neutral-400">
                   Currently available for freelance projects.
@@ -203,7 +249,7 @@ export default function HomePage() {
               {experience.map((item) => (
                 <li
                   key={item.role}
-                  className="flex items-center justify-between gap-4 rounded-2xl border border-neutral-100 bg-neutral-50 px-4 py-3"
+                  className="flex items-center justify-between gap-4 rounded-2xl border border-neutral-100 bg-neutral-50 px-4 py-3 hover:shadow-md transition-all"
                 >
                   <div>
                     <p className="font-medium">{item.role}</p>
@@ -221,22 +267,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* What I'm offering */}
+      {/* Services Section */}
       <section className="border-t border-neutral-200 bg-white">
         <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-12 lg:flex-row lg:items-start">
           <div className="flex-1 space-y-4">
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400">
-              My services
+              What I offer
             </p>
-            <h2 className="text-2xl font-semibold">What I&apos;m offering</h2>
+            <h2 className="text-2xl font-semibold">Software Engineering Services</h2>
             <p className="max-w-md text-sm text-neutral-600">
-              From high‑fidelity product flows to visual identities, each
-              engagement is tailored to elevate digital experiences for startups
-              and established teams.
+              From business websites to complex web applications, delivering scalable solutions 
+              with modern tech stack for startups, agencies and enterprises.
             </p>
-            <button className="rounded-full border border-neutral-300 px-5 py-2 text-xs font-medium uppercase tracking-[0.18em]">
-              All services
-            </button>
           </div>
 
           <div className="grid flex-1 gap-4 md:grid-cols-3">
@@ -268,16 +310,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Case studies + testimonial */}
+      {/* Projects + Testimonial */}
       <section className="border-t border-neutral-200 bg-neutral-100">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 lg:grid-cols-[2fr,1.3fr]">
-          {/* Case studies */}
           <div className="space-y-6">
             <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500">
-              Case study
+              Featured Projects
             </h2>
             <div className="space-y-4">
-              {caseStudies.map((item) => (
+              {projects.map((item) => (
                 <article
                   key={item.title}
                   className="flex flex-col gap-2 rounded-3xl bg-white p-5 shadow-sm shadow-black/5"
@@ -295,22 +336,22 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Testimonial */}
           <div className="flex flex-col justify-between gap-6 rounded-3xl bg-white p-6 shadow-sm shadow-black/5">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
-              Client feedback
+              Availability
             </p>
             <p className="text-sm leading-relaxed text-neutral-800">
-              “I just wanted to share a quick note and let you know that you did
-              a really good job. The product looks fantastic and the process
-              felt effortless.”
+              "Ready to join your team or work on exciting freelance projects. 
+              Specializing in modern web technologies and scalable applications."
             </p>
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-neutral-200" />
+              <div className="h-10 w-10 rounded-full bg-neutral-200 flex items-center justify-center font-semibold text-sm text-neutral-700">
+                BB
+              </div>
               <div>
-                <p className="text-sm font-semibold">Rohan Sing</p>
+                <p className="text-sm font-semibold">Bhusan</p>
                 <p className="text-xs text-neutral-500">
-                  Product Manager, Fintech Co.
+                  Full-Stack Developer | Esta Travels Founder
                 </p>
               </div>
             </div>
@@ -318,15 +359,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="border-t border-neutral-200 bg-white">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-6 text-xs text-neutral-500 md:flex-row">
           <div className="flex gap-4">
-            <span>Facebook</span>
-            <span>YouTube</span>
-            <span>Twitter</span>
+            <a href="#" className="hover:text-black">LinkedIn</a>
+            <a href="#" className="hover:text-black">GitHub</a>
+            <a href="https://estatravels.in" className="hover:text-black font-medium">Esta Travels</a>
           </div>
-          <p>© {new Date().getFullYear()} Madhu. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Bhusan. All rights reserved.</p>
         </div>
       </footer>
     </main>
