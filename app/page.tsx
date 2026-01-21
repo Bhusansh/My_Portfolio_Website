@@ -9,6 +9,26 @@ type Service = {
   variant?: "dark" | "light";
 };
 
+type ExperienceItem = {
+  role: string;
+  company: string;
+  location: string;
+  duration: string;
+};
+
+type Project = {
+  tag: string;
+  title: string;
+  subtitle: string;
+};
+
+type Skill = {
+  name: string;
+  description: string;
+  level: number;
+};
+
+// All data defined BEFORE component
 const services: Service[] = [
   {
     title: "Web & App Development",
@@ -26,13 +46,6 @@ const services: Service[] = [
     variant: "light",
   },
 ];
-
-type ExperienceItem = {
-  role: string;
-  company: string;
-  location: string;
-  duration: string;
-};
 
 const experience: ExperienceItem[] = [
   {
@@ -61,12 +74,6 @@ const experience: ExperienceItem[] = [
   },
 ];
 
-type Project = {
-  tag: string;
-  title: string;
-  subtitle: string;
-};
-
 const projects: Project[] = [
   {
     tag: "Full-Stack",
@@ -85,12 +92,6 @@ const projects: Project[] = [
   },
 ];
 
-type Skill = {
-  name: string;
-  description: string;
-  level: number; // 0-100 percentage
-};
-
 const skills: Skill[] = [
   { name: "Next.js", description: "Full-stack React framework with server components", level: 85 },
   { name: "React", description: "Modern UI library with hooks and components", level: 90 },
@@ -103,7 +104,7 @@ const skills: Skill[] = [
 ];
 
 export default function HomePage() {
-  const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
+  const [selectedSkill, setSelectedSkill] = useState(skills[0]);
 
   return (
     <main className="min-h-screen">
@@ -185,32 +186,6 @@ export default function HomePage() {
               </button>
             </div>
           </div>
-
-          {/* Tech stack tabs with dropdown */}
-          <div className="mt-10 flex flex-wrap gap-3 border-y border-neutral-200 py-4 text-xs font-medium uppercase tracking-[0.18em] text-neutral-600">
-            {skills.map((skill) => (
-              <div key={skill.name} className="relative inline-block">
-                <button
-                  onClick={() => setSelectedSkill(selectedSkill === skill.name ? null : skill.name)}
-                  className="rounded-full bg-black px-4 py-2 text-white hover:bg-neutral-800"
-                >
-                  {skill.name}
-                </button>
-                {selectedSkill === skill.name && (
-                  <div className="absolute bottom-full left-0 mb-2 w-48 rounded-xl bg-white p-3 shadow-lg border border-neutral-200">
-                    <p className="text-xs text-neutral-700 mb-2">{skill.description}</p>
-                    <div className="h-1.5 w-full rounded-full bg-neutral-200">
-                      <div
-                        className="h-1.5 rounded-full bg-black transition-all duration-700 ease-out"
-                        style={{ width: `${skill.level}%` }}
-                      />
-                    </div>
-                    <p className="mt-1 text-xs font-medium text-neutral-600">{skill.level}%</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Right column: hero image + experience cards */}
@@ -264,6 +239,88 @@ export default function HomePage() {
               ))}
             </ul>
           </div>
+        </div>
+      </section>
+
+      {/* ================= SKILL STACK SECTION ================= */}
+      <section className="border-t border-neutral-200 bg-gradient-to-br from-white via-neutral-50 to-white">
+        <div className="mx-auto max-w-6xl px-4 py-16 space-y-12 lg:py-20">
+          {/* Section Header */}
+          <div className="text-center space-y-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400">
+              Technical Skill Stack
+            </p>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Technologies I Work With
+            </h2>
+            <p className="max-w-lg mx-auto text-sm text-neutral-600 leading-relaxed">
+              Proficient in modern web development stack with hands-on experience 
+              building production-ready applications.
+            </p>
+          </div>
+
+          {/* Skill Buttons */}
+          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+            {skills.map((skill) => (
+              <button
+                key={skill.name}
+                onClick={() => setSelectedSkill(skill)}
+                className={`rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 shadow-sm ${
+                  selectedSkill.name === skill.name
+                    ? "bg-black text-white shadow-md shadow-black/20 hover:shadow-lg hover:shadow-black/30 transform scale-105"
+                    : "border-2 border-neutral-200 text-neutral-700 hover:border-neutral-400 hover:bg-neutral-50 hover:shadow-md hover:scale-105"
+                }`}
+              >
+                {skill.name}
+              </button>
+            ))}
+          </div>
+
+          {/* Selected Skill Display */}
+          {selectedSkill && (
+            <div className="mx-auto max-w-2xl">
+              <div className="group relative rounded-3xl border-2 border-neutral-200 bg-white/80 p-8 shadow-xl backdrop-blur-sm hover:shadow-2xl hover:shadow-black/10 transition-all duration-500">
+                {/* Animated background gradient */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-yellow-50 via-blue-50 to-pink-50 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                
+                <div className="relative z-10 space-y-6">
+                  {/* Skill Header */}
+                  <div className="space-y-2">
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-black via-neutral-800 to-neutral-900 bg-clip-text text-transparent">
+                      {selectedSkill.name}
+                    </h3>
+                    <div className="h-1 w-20 bg-gradient-to-r from-yellow-400 to-pink-500 rounded-full" />
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-lg leading-relaxed text-neutral-700 max-w-lg">
+                    {selectedSkill.description}
+                  </p>
+
+                  {/* Progress Bar */}
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-sm font-medium text-neutral-600">
+                      <span>Proficiency Level</span>
+                      <span>{selectedSkill.level}%</span>
+                    </div>
+                    <div className="h-3 w-full rounded-2xl bg-neutral-200 overflow-hidden shadow-inner">
+                      <div
+                        className="h-full bg-gradient-to-r from-black via-neutral-800 to-neutral-900 rounded-2xl shadow-lg transition-all duration-1000 ease-out flex items-center justify-center text-xs font-bold text-white"
+                        style={{ width: `${selectedSkill.level}%` }}
+                      >
+                        {selectedSkill.level > 80 && `${selectedSkill.level}%`}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* CTA */}
+                  <button className="mt-4 inline-flex items-center gap-2 rounded-full border-2 border-black bg-black px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-neutral-900 hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    See Projects →
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
